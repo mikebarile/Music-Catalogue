@@ -8,4 +8,5 @@ class Track < ActiveRecord::Base
   end
 
   belongs_to :album
+  has_many :notes
 end

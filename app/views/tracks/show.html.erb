@@ -2,6 +2,42 @@
 <h1><%= @track.name %></h1>
 <h3>Lyrics</h3>
 <p><i>♫ <%= @track.lyrics %></i></p>
+
+<h3>New note</h3>
+<form action="<%= "/bands/#{@track.album.band.id}/albums/#{@track.album.id}/tracks/#{@track.id}/notes" %>" method="post">
+  <input type="hidden" name="authenticity_token" value="form_authenticity_token"/>
+  <label for="note">Content</label>
+  <br/>
+  <textarea name="note" id="note" cols="30" rows="7"> </textarea>
+  <br/>
+  <button>Submit</button>
+</form>
+
+<h3>Notes</h3>
+<% if Note.where("track_id = '#{@track.id}'").length >= 1 %>
+  <table cellspacing="0" cellpadding="5">
+    <tr>
+    <td><b>Author</b></td>
+    <td><b>Note</b></td>
+    <td><b>Timestamp</b></td>
+    </tr>
+
+    <% Note.where("track_id = '#{@track.id}'").each do |note| %>
+      <tr>
+        <td><%= note.user.email %></td>
+        <td><%= note.note %></td>
+        <td><%= note.created_at.to_date %></td>
+        <% if current_user.id == note.user_id %>
+          <td>
+            <%=button_to "Delete note", "/bands/#{@track.album.band.id}/albums/#{@track.album.id}/tracks/#{@track.id}/notes/#{note.id}",
+            method: "delete"%>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+
 <h3>Links</h3>
 <ul>
   <li><%= link_to "Edit track", "/bands/#{@track.album.band.id}/albums/#{@track.album.id}/tracks/#{@track.id}/edit" %></li>

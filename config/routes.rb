@@ -57,7 +57,9 @@ Rails.application.routes.draw do
   resources :session, only: [:create, :new, :destroy]
   resources :bands do
     resources :albums, only: [:new, :create, :edit, :show, :update, :destroy] do
-      resources :tracks, only: [:new, :create, :edit, :show, :update, :destroy]
+      resources :tracks, only: [:new, :create, :edit, :show, :update, :destroy] do
+        resources :notes, only: [:create, :destroy]
+      end
     end
   end
 end

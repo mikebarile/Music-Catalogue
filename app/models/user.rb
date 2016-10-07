@@ -34,4 +34,6 @@ class User < ActiveRecord::Base
     user && user.is_password?(password) ? user : nil
   end
 
+  has_many :notes
+
 end
