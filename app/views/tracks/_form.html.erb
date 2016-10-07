@@ -1,0 +1,39 @@
+
+<form action="<%= action_url %>" method="post">
+  <input type="hidden" name="authenticity_token" value="form_authenticity_token"/>
+  <% if method == "patch" %>
+  <input type="hidden" name="_method" value="patch" />
+  <% end %>
+
+  <label for="track_name">Track name: </label>
+  <input type="text" id="track_name" name="track[name]"
+    <% if @track %>
+    value="<%=@track.name%>"
+    <% end %> />
+  <br/>
+
+  <label for="album_name">Album name: </label>
+  <select name="track[album_name]" id="album_name">
+    <% Album.where("band_id = '#{@album.band.id}'").each do |album| %>
+    <option value="<%=album.name%>"
+      <%= "selected" if @album.name == album.name%> ><%= album.name %></option>
+    <% end %>
+  </select>
+  <br/>
+
+  <label>Track category: </label>
+  <label for="track_category_regular">regular</label>
+  <input type="radio" name="track[category]" id="track_category_regular"
+    value="regular" <%= "checked" if @track && @track.category=="regular" %>/>
+
+
+  <label for="track_category_bonus">bonus</label>
+  <input type="radio" name="track[category]" id="track_category_bonus"
+    value="bonus" <%= "checked" if @track && @track.category=="regular" %> />
+  <br/>
+
+  <label for="track_lyrics">Lyrics: </label>
+  <textarea name="track[lyrics]" id="track_lyrics"><% if @track %><%=@track.lyrics%><% end %></textarea>
+
+  <button>Submit</button>
+</form>

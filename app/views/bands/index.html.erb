@@ -1,0 +1,8 @@
+<%= render 'shared/header' %>
+<h1>Bands / Artists </h1>
+<ul>
+  <% Band.all.each do |band| %>
+  <li><%= link_to "#{band.name}", "/bands/#{band.id}" %></li>
+  <% end %>
+</ul>
+<%= link_to "Add band / artist", "/bands/new"%>

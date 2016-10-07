@@ -1,0 +1,15 @@
+<%= render 'shared/header' %>
+<h1><%= @band.name %><%= @plural %>albums:</h1>
+<h3>Albums</h3>
+<ul>
+  <% @band.albums.each do |album| %>
+  <li><%= link_to "#{album.name}", "/bands/#{@band.id}/albums/#{album.id}" %></li>
+  <% end %>
+</ul>
+<h3>Links</h3>
+<ul>
+  <li><%= link_to "New album", "/bands/#{@band.id}/albums/new" %></li>
+  <li><%= link_to "Edit band / artist", "/bands/#{@band.id}/edit" %></li>
+  <li><%= link_to "Delete band / artist", "/bands/#{@band.id}", method: "delete" %></li>
+  <li><%= link_to "All bands / artists", "/bands"%></li>
+</ul>

@@ -1,0 +1,36 @@
+
+<form action="<%= action_url %>" method="post">
+  <input type="hidden" name="authenticity_token" value="form_authenticity_token"/>
+  <% if method == "patch" %>
+  <input type="hidden" name="_method" value="patch" />
+  <% end %>
+
+  <label for="album_name">Album name: </label>
+  <input type="text" id="album_name" name="album[name]"
+    <% if @album %>
+    value="<%=@album.name%>"
+    <% end %> />
+  <br/>
+
+  <label for="band_name">Band / artist name: </label>
+  <select name="album[band_name]" id="band_name">
+    <% Band.all.each do |band| %>
+    <option value="<%=band.name%>"
+      <%= "selected" if @band.name == band.name%> ><%= band.name %></option>
+    <% end %>
+  </select>
+  <br/>
+
+  <label>Album category: </label>
+  <label for="album_category_studio">studio</label>
+  <input type="radio" name="album[category]" id="album_category_studio"
+    value="studio" <%= "checked" if @album && @album.category=="studio" %>/>
+
+
+  <label for="album_category_live">live</label>
+  <input type="radio" name="album[category]" id="album_category_live"
+    value="live" <%= "checked" if @album && @album.category=="live" %> />
+  <br/>
+
+  <button>Submit</button>
+</form>

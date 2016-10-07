@@ -1,0 +1,3 @@
+<%= render 'shared/header' %>
+<h1>Edit a track!</h1>
+<%= render "tracks/form", method: "patch", action_url: "/bands/#{@track.album.band.id}/albums/#{@track.album.id}/tracks/#{@track.id}"%>

@@ -1,0 +1,4 @@
+<%= render 'shared/header' %>
+<h1>Edit an album!</h1>
+<%= render "albums/form", method: "patch",
+  action_url: "/bands/#{@album.band.id}/albums/#{@album.id}"%>

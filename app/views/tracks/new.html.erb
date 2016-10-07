@@ -1,0 +1,4 @@
+<%= render 'shared/header' %>
+<h1>Add a track!</h1>
+<%= render "tracks/form", method: "post", action_url: "/bands/
+  #{@album.band.id}/albums/#{@album.id}/tracks"%>

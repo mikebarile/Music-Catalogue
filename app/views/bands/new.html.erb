@@ -1,0 +1,8 @@
+<%= render 'shared/header' %>
+<h1>Add a band!</h1>
+<form action="/bands" method="post">
+  <input type="hidden" name="authenticity_token" value="form_authenticity_token"/>
+  <label for="band_name">Band name: </label>
+  <input type="text", id="band_name", name="band[name]"/>
+  <button>Submit</button>
+</form>

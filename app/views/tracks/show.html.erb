@@ -1,0 +1,10 @@
+<%= render 'shared/header' %>
+<h1><%= @track.name %></h1>
+<h3>Lyrics</h3>
+<p><i>♫ <%= @track.lyrics %></i></p>
+<h3>Links</h3>
+<ul>
+  <li><%= link_to "Edit track", "/bands/#{@track.album.band.id}/albums/#{@track.album.id}/tracks/#{@track.id}/edit" %></li>
+  <li><%= link_to "Delete track", "/bands/#{@track.album.band.id}/albums/#{@track.album.id}/tracks/#{@track.id}", method: "delete" %></li>
+  <li><%= link_to "#{@track.album.name}", "/bands/#{@track.album.band.id}/albums/#{@track.album.id}"%></li>
+</ul>

@@ -1,0 +1,6 @@
+<p>
+<%= "Logged in as: #{current_user.email}" %>
+<%= button_to "Sign out", "/session/#{current_user.id}", method: "delete" %>
+<br/>
+<%= link_to "Back to all bands / artists", "/bands" %>
+</p>
